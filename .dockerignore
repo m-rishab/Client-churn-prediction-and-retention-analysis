@@ -1,0 +1,23 @@
+# Keep the Docker build context small and reproducible.
+# Without this, `COPY churn_system/backend/` would pull in a ~400 MB .venv
+# and `COPY churn_system/frontend/` would copy node_modules.
+
+# --- version control / tooling ---
+.git
+.gitignore
+.freebuff
+.DS_Store
+Thumbs.db
+
+# --- Python ---
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+
+# --- Node / build output (the frontend is built inside the image) ---
+**/node_modules
+**/dist
+
+# --- runtime data ---
+**/history.db

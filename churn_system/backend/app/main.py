@@ -12,10 +12,10 @@ import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from . import db
@@ -112,6 +112,44 @@ app.include_router(predict.router)
 app.include_router(portfolio.router)
 
 
-@app.get("/")
-def root() -> dict:
-    return {"name": "Client Leaving Risk Checker API", "docs": "/api/docs"}
+# Built Vite output, served by this same service in production. Overridden by
+# the Docker build (which copies dist/ here); harmless when it is absent.
+FRONTEND_DIST = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+
+
+@app.get("/", include_in_schema=False)
+def frontend_root():
+    """Serve the built React app's index.html (single-service deploy)."""
+    index_file = FRONTEND_DIST / "index.html"
+    if not index_file.is_file():
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Frontend build not found. "
+                              "Check the Docker build configuration."},
+        )
+    return FileResponse(index_file)
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+def frontend_fallback(full_path: str):
+    """SPA fallback: serve real files, else index.html, but never /api/*.
+
+    Registered last, so every /api route above wins. Unknown API URLs stay
+    JSON 404s instead of leaking an HTML page.
+    """
+    if full_path == "api" or full_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="Not found")
+
+    dist = FRONTEND_DIST.resolve()
+    candidate = (dist / full_path).resolve()
+    # Block paths that try to escape the frontend directory.
+    if candidate != dist and dist not in candidate.parents:
+        raise HTTPException(status_code=404, detail="Not found")
+    if candidate.is_file():
+        return FileResponse(candidate)
+
+    index_file = dist / "index.html"
+    if index_file.is_file():
+        return FileResponse(index_file)
+    return JSONResponse(status_code=503,
+                        content={"error": "Frontend build not found."})
