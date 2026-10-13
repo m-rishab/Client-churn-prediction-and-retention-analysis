@@ -1,0 +1,22 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# --- Node ---
+node_modules/
+churn_system/frontend/dist/
+
+# --- Runtime data (schema auto-creates on first run) ---
+churn_system/backend/history.db
+# NOTE: churn_system/backend/artifacts/ is INTENTIONALLY committed —
+# it holds the trained model (churn_model.joblib) the app needs to run.
+
+# --- Test output ---
+test-results/
+
+# --- OS / editor / tooling ---
+.DS_Store
+Thumbs.db
+.freebuff/

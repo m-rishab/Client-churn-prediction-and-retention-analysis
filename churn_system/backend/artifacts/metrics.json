@@ -1,0 +1,551 @@
+{
+  "sanity_gate": {
+    "full_feature_xgb_test_roc_auc": 0.8937,
+    "base_only_xgb_test_roc_auc": 0.8232,
+    "delta": 0.0705,
+    "attempts": 1,
+    "noise_mult": 1.0,
+    "bands": {
+      "full_auc": [
+        0.86,
+        0.9
+      ],
+      "min_delta_over_base": 0.02,
+      "regenerate_above": 0.92
+    }
+  },
+  "generator_correlations": {
+    "Content_Quality_Score": 0.42,
+    "Content_Score_Trend_30D": 0.38,
+    "Guideline_Compliance_Score": 0.4,
+    "Compliance_Flags": -0.39,
+    "Critical_Compliance_Issues": -0.35,
+    "Engagement_Score": 0.42,
+    "Monthly_Engagements": 0.4,
+    "Client_Meetings": 0.35,
+    "Report_Views": 0.34,
+    "Response_Rate": 0.39,
+    "Support_Tickets": -0.38,
+    "Unresolved_Support_Tickets": -0.38,
+    "Avg_Resolution_Time": -0.37,
+    "Days_Since_Last_Engagement": -0.43,
+    "Search_Visibility_Change": 0.39,
+    "Traffic_Change": 0.38
+  },
+  "cv": {
+    "Logistic Regression": {
+      "roc_auc_mean": 0.9075,
+      "roc_auc_std": 0.0106,
+      "pr_auc_mean": 0.7925,
+      "f1_mean": 0.7108
+    },
+    "Random Forest": {
+      "roc_auc_mean": 0.9034,
+      "roc_auc_std": 0.0104,
+      "pr_auc_mean": 0.7815,
+      "f1_mean": 0.7196
+    },
+    "XGBoost": {
+      "roc_auc_mean": 0.9072,
+      "roc_auc_std": 0.0083,
+      "pr_auc_mean": 0.793,
+      "f1_mean": 0.7154
+    },
+    "Logistic Regression + SMOTE": {
+      "roc_auc_mean": 0.9072,
+      "roc_auc_std": 0.0105,
+      "pr_auc_mean": 0.792,
+      "f1_mean": 0.7119
+    }
+  },
+  "best_params": {
+    "Logistic Regression": {
+      "model__C": 7.3299394181140505
+    },
+    "Random Forest": {
+      "model__n_estimators": 600,
+      "model__min_samples_leaf": 2,
+      "model__max_features": "log2",
+      "model__max_depth": 10
+    },
+    "XGBoost": {
+      "model__colsample_bytree": 0.7467983561008608,
+      "model__learning_rate": 0.031616722433639895,
+      "model__max_depth": 3,
+      "model__min_child_weight": 5,
+      "model__n_estimators": 250,
+      "model__subsample": 0.71692347370813
+    },
+    "Logistic Regression + SMOTE": {
+      "model__C": 0.6605159298527952,
+      "sampler__k_neighbors": 3
+    }
+  },
+  "validation_thresholds": [
+    {
+      "model": "Logistic Regression",
+      "f1_optimal_threshold": 0.614,
+      "f1_at_threshold": 0.6997,
+      "cost_optimal_threshold": 0.27,
+      "min_cost_at_threshold": 375,
+      "cost_at_f1_threshold": 458
+    },
+    {
+      "model": "Random Forest",
+      "f1_optimal_threshold": 0.458,
+      "f1_at_threshold": 0.7074,
+      "cost_optimal_threshold": 0.34,
+      "min_cost_at_threshold": 385,
+      "cost_at_f1_threshold": 445
+    },
+    {
+      "model": "XGBoost",
+      "f1_optimal_threshold": 0.511,
+      "f1_at_threshold": 0.6944,
+      "cost_optimal_threshold": 0.24,
+      "min_cost_at_threshold": 377,
+      "cost_at_f1_threshold": 422
+    },
+    {
+      "model": "Logistic Regression + SMOTE",
+      "f1_optimal_threshold": 0.643,
+      "f1_at_threshold": 0.7019,
+      "cost_optimal_threshold": 0.27,
+      "min_cost_at_threshold": 375,
+      "cost_at_f1_threshold": 475
+    }
+  ],
+  "test_evaluation": [
+    {
+      "model": "Logistic Regression",
+      "roc_auc": 0.9104,
+      "pr_auc": 0.7662,
+      "cv_roc_auc_mean": 0.9075,
+      "cv_roc_auc_std": 0.0106,
+      "threshold": 0.614,
+      "accuracy": 0.842,
+      "precision": 0.6628,
+      "recall": 0.8214,
+      "f1": 0.7337,
+      "f1_at_default_0.5": 0.7172,
+      "confusion_matrix": {
+        "tn": 660,
+        "fp": 117,
+        "fn": 50,
+        "tp": 230
+      },
+      "cost_threshold": 0.27,
+      "cost_metrics": {
+        "threshold": 0.27,
+        "accuracy": 0.7266,
+        "precision": 0.4919,
+        "recall": 0.9714,
+        "f1": 0.6531,
+        "roc_auc": 0.9104,
+        "pr_auc": 0.7662,
+        "confusion_matrix": {
+          "tn": 496,
+          "fp": 281,
+          "fn": 8,
+          "tp": 272
+        }
+      }
+    },
+    {
+      "model": "Random Forest",
+      "roc_auc": 0.9086,
+      "pr_auc": 0.761,
+      "cv_roc_auc_mean": 0.9034,
+      "cv_roc_auc_std": 0.0104,
+      "threshold": 0.458,
+      "accuracy": 0.8363,
+      "precision": 0.6551,
+      "recall": 0.8071,
+      "f1": 0.7232,
+      "f1_at_default_0.5": 0.7245,
+      "confusion_matrix": {
+        "tn": 658,
+        "fp": 119,
+        "fn": 54,
+        "tp": 226
+      },
+      "cost_threshold": 0.34,
+      "cost_metrics": {
+        "threshold": 0.34,
+        "accuracy": 0.8032,
+        "precision": 0.5826,
+        "recall": 0.9071,
+        "f1": 0.7095,
+        "roc_auc": 0.9086,
+        "pr_auc": 0.761,
+        "confusion_matrix": {
+          "tn": 595,
+          "fp": 182,
+          "fn": 26,
+          "tp": 254
+        }
+      }
+    },
+    {
+      "model": "XGBoost",
+      "roc_auc": 0.9131,
+      "pr_auc": 0.7834,
+      "cv_roc_auc_mean": 0.9072,
+      "cv_roc_auc_std": 0.0083,
+      "threshold": 0.511,
+      "accuracy": 0.8363,
+      "precision": 0.6404,
+      "recall": 0.8714,
+      "f1": 0.7383,
+      "f1_at_default_0.5": 0.7338,
+      "confusion_matrix": {
+        "tn": 640,
+        "fp": 137,
+        "fn": 36,
+        "tp": 244
+      },
+      "cost_threshold": 0.24,
+      "cost_metrics": {
+        "threshold": 0.24,
+        "accuracy": 0.7039,
+        "precision": 0.471,
+        "recall": 0.9571,
+        "f1": 0.6313,
+        "roc_auc": 0.9131,
+        "pr_auc": 0.7834,
+        "confusion_matrix": {
+          "tn": 476,
+          "fp": 301,
+          "fn": 12,
+          "tp": 268
+        }
+      }
+    },
+    {
+      "model": "Logistic Regression + SMOTE",
+      "roc_auc": 0.9116,
+      "pr_auc": 0.7703,
+      "cv_roc_auc_mean": 0.9072,
+      "cv_roc_auc_std": 0.0105,
+      "threshold": 0.643,
+      "accuracy": 0.8505,
+      "precision": 0.6871,
+      "recall": 0.8,
+      "f1": 0.7393,
+      "f1_at_default_0.5": 0.7208,
+      "confusion_matrix": {
+        "tn": 675,
+        "fp": 102,
+        "fn": 56,
+        "tp": 224
+      },
+      "cost_threshold": 0.27,
+      "cost_metrics": {
+        "threshold": 0.27,
+        "accuracy": 0.7408,
+        "precision": 0.5056,
+        "recall": 0.9607,
+        "f1": 0.6626,
+        "roc_auc": 0.9116,
+        "pr_auc": 0.7703,
+        "confusion_matrix": {
+          "tn": 514,
+          "fp": 263,
+          "fn": 11,
+          "tp": 269
+        }
+      }
+    }
+  ],
+  "shuffled_label_check": {
+    "model": "XGBoost",
+    "mean_auc": 0.5014,
+    "std": 0.0148
+  },
+  "max_metric_check": 0.9147,
+  "final_model": {
+    "model_name": "XGBoost",
+    "validation_roc_auc": 0.8913,
+    "threshold_f1_optimal": 0.6094,
+    "threshold_cost_optimal": 0.26,
+    "variant": "group-noise-pruned"
+  },
+  "noise_floor_pruning": {
+    "applied": true,
+    "method": "grouped permutation + drop-group importance (validation)",
+    "noise_floor": 0.00012,
+    "n_repeats": 20,
+    "group_importance": {
+      "content_quality": {
+        "perm": 0.01105,
+        "dropcol": 0.00053
+      },
+      "compliance": {
+        "perm": 0.00836,
+        "dropcol": 0.00314
+      },
+      "engagement": {
+        "perm": 0.0569,
+        "dropcol": 0.01578
+      },
+      "support": {
+        "perm": 0.00454,
+        "dropcol": 0.00157
+      },
+      "noise_control_1": {
+        "perm": 0.00011,
+        "dropcol": -0.00038
+      },
+      "noise_control_2": {
+        "perm": 0.00012,
+        "dropcol": -0.00039
+      }
+    },
+    "groups_kept": [
+      "content_quality",
+      "compliance",
+      "engagement",
+      "support"
+    ],
+    "groups_dropped": [],
+    "features_before": 24,
+    "features_after": 22,
+    "dropped_features": [
+      "noise_control_1",
+      "noise_control_2"
+    ],
+    "val_auc_before": 0.888,
+    "val_auc_after": 0.8913,
+    "test_before": {
+      "roc_auc": 0.9131,
+      "pr_auc": 0.7834
+    },
+    "test_after": {
+      "roc_auc": 0.9147,
+      "pr_auc": 0.7857
+    },
+    "prune_best_params": {
+      "max_depth": 2,
+      "min_child_weight": 10,
+      "reg_lambda": 10.0
+    },
+    "test_after_full": {
+      "threshold": 0.6094,
+      "accuracy": 0.8477,
+      "precision": 0.6798,
+      "recall": 0.8036,
+      "f1": 0.7365,
+      "roc_auc": 0.9147,
+      "pr_auc": 0.7857,
+      "confusion_matrix": {
+        "tn": 671,
+        "fp": 106,
+        "fn": 55,
+        "tp": 225
+      }
+    },
+    "test_after_cost": {
+      "threshold": 0.26,
+      "accuracy": 0.7342,
+      "precision": 0.4991,
+      "recall": 0.9607,
+      "f1": 0.6569,
+      "roc_auc": 0.9147,
+      "pr_auc": 0.7857,
+      "confusion_matrix": {
+        "tn": 507,
+        "fp": 270,
+        "fn": 11,
+        "tp": 269
+      }
+    }
+  },
+  "shap_top10_drivers": [
+    {
+      "rank": 1,
+      "feature": "cat__Service_Type_Fiber optic",
+      "mean_abs_shap": 0.4295,
+      "meaning": "Service Type = 'Fiber optic'",
+      "direction": "higher value -> higher churn risk"
+    },
+    {
+      "rank": 2,
+      "feature": "num__Client_Tenure_Months",
+      "mean_abs_shap": 0.4158,
+      "meaning": "how long the client has stayed with us",
+      "direction": "higher value -> lower churn risk"
+    },
+    {
+      "rank": 3,
+      "feature": "cat__Engagement_Type_Two year",
+      "mean_abs_shap": 0.3989,
+      "meaning": "Engagement Type = 'Two year'",
+      "direction": "higher value -> lower churn risk"
+    },
+    {
+      "rank": 4,
+      "feature": "num__Days_Since_Last_Engagement",
+      "mean_abs_shap": 0.3379,
+      "meaning": "days since the client last engaged with us",
+      "direction": "higher value -> higher churn risk"
+    },
+    {
+      "rank": 5,
+      "feature": "num__Engagement_Score",
+      "mean_abs_shap": 0.2612,
+      "meaning": "overall engagement with our advisory service",
+      "direction": "higher value -> lower churn risk"
+    },
+    {
+      "rank": 6,
+      "feature": "num__Response_Rate",
+      "mean_abs_shap": 0.2377,
+      "meaning": "how quickly the client responds to outreach",
+      "direction": "higher value -> lower churn risk"
+    },
+    {
+      "rank": 7,
+      "feature": "num__Critical_Compliance_Issues",
+      "mean_abs_shap": 0.2351,
+      "meaning": "count of critical compliance issues",
+      "direction": "higher value -> higher churn risk"
+    },
+    {
+      "rank": 8,
+      "feature": "num__Monthly_Client_Value",
+      "mean_abs_shap": 0.2315,
+      "meaning": "the client's monthly spend",
+      "direction": "higher value -> higher churn risk"
+    },
+    {
+      "rank": 9,
+      "feature": "num__Report_Views",
+      "mean_abs_shap": 0.2243,
+      "meaning": "how often the client opens performance reports",
+      "direction": "higher value -> lower churn risk"
+    },
+    {
+      "rank": 10,
+      "feature": "num__Search_Visibility_Change",
+      "mean_abs_shap": 0.2113,
+      "meaning": "30-day change in the client's search visibility",
+      "direction": "higher value -> lower churn risk"
+    }
+  ],
+  "noise_feature_check": {
+    "ranks": {
+      "num__noise_control_1": null,
+      "num__noise_control_2": null
+    },
+    "n_features": 25,
+    "any_in_top10": false,
+    "pruned_from_model": true
+  },
+  "segmentation": {
+    "scoring": "out-of-fold cross_val_predict, 5-fold stratified",
+    "oof_roc_auc_diagnostic": 0.9068,
+    "threshold_used": 0.6094,
+    "value_median": 1196.4,
+    "segments": [
+      {
+        "segment": "High risk + High value",
+        "clients": 1647,
+        "share_pct": 23.4,
+        "expected_loss": 2729353.0,
+        "action": "Save now - senior advisor call + content strategy review within 7 days"
+      },
+      {
+        "segment": "High risk + Low value",
+        "clients": 424,
+        "share_pct": 6.0,
+        "expected_loss": 270231.0,
+        "action": "Automated nudge - email/portal tips + self-serve content check"
+      },
+      {
+        "segment": "Low risk + High value",
+        "clients": 1879,
+        "share_pct": 26.7,
+        "expected_loss": 906244.0,
+        "action": "Nurture - quarterly business review + upsell content roadmap"
+      },
+      {
+        "segment": "Low risk + Low value",
+        "clients": 3093,
+        "share_pct": 43.9,
+        "expected_loss": 238092.0,
+        "action": "Monitor - automated health score, standard support"
+      }
+    ],
+    "total_expected_loss": 4143920.0,
+    "save_now": {
+      "capacity": 50,
+      "file": "reports/save_now_list.csv",
+      "covered_expected_loss": 120641.0,
+      "covered_share_pct": 2.9,
+      "top10_client_ids": [
+        "9851-KIELU",
+        "3992-YWPKO",
+        "1583-IHQZE",
+        "5760-IFJOZ",
+        "0115-TFERT",
+        "8111-SLLHI",
+        "9158-VCTQB",
+        "6591-QGOYB",
+        "0363-QJVFX",
+        "4587-VVTOX"
+      ]
+    }
+  },
+  "capacity_curve": {
+    "n_for_25_pct": 496,
+    "n_for_50_pct": null,
+    "n_for_75_pct": null,
+    "note": "Curve shape depends on the value distribution; synthetic values are flat, so the shape will differ with real client contract values."
+  },
+  "roi_scenarios": {
+    "cost_per_intervention": 100,
+    "capacity": 50,
+    "queue_expected_loss": 120641.0,
+    "scenarios": [
+      {
+        "save_rate": 0.1,
+        "expected_loss_avoided": 12064.0,
+        "intervention_cost": 5000,
+        "net_benefit": 7064.0,
+        "roi": 1.41
+      },
+      {
+        "save_rate": 0.2,
+        "expected_loss_avoided": 24128.0,
+        "intervention_cost": 5000,
+        "net_benefit": 19128.0,
+        "roi": 3.83
+      },
+      {
+        "save_rate": 0.3,
+        "expected_loss_avoided": 36192.0,
+        "intervention_cost": 5000,
+        "net_benefit": 31192.0,
+        "roi": 6.24
+      }
+    ],
+    "disclaimer": "Illustrative only: value comes from telecom bills and save rates are assumptions; churn risk is not responsiveness to intervention - a pilot with a control group is needed to measure real uplift."
+  },
+  "sensitivity_test": {
+    "features": [
+      "Engagement_Score",
+      "Compliance_Flags",
+      "Days_Since_Last_Engagement"
+    ],
+    "skipped_not_in_model": [],
+    "all_monotonic_as_expected": true,
+    "worst_wrong_way_step": 0.0,
+    "note": "net-direction test with per-step tolerance; boosted trees are piecewise-constant"
+  },
+  "run_info": {
+    "run_date_utc": "2026-09-23T18:00:47Z",
+    "seed": 42,
+    "rows": 7043,
+    "feature_count": 22
+  }
+}

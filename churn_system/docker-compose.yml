@@ -1,0 +1,30 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - CHURN_DB_PATH=/data/history.db
+      - CHURN_API_KEY=${CHURN_API_KEY:-}
+      - CHURN_CORS_ORIGINS=${CHURN_CORS_ORIGINS:-http://localhost:5173,http://localhost:4173}
+      - BRIEF_LLM_API_KEY=${BRIEF_LLM_API_KEY:-}
+      - BRIEF_LLM_BASE_URL=${BRIEF_LLM_BASE_URL:-https://api.openai.com/v1}
+      - BRIEF_LLM_MODEL=${BRIEF_LLM_MODEL:-gpt-4o-mini}
+    volumes:
+      - history:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  history:

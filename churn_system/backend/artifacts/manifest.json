@@ -1,0 +1,22 @@
+{
+  "purpose": "Read-only copies of model artifacts. Never edit these files.",
+  "source_model": "c8c10aa6c7f39a00857054b7e9a18f334893c4280e69a3d99f0f0f8e07d197ca",
+  "copies": {
+    "churn_model.joblib": "c8c10aa6c7f39a00857054b7e9a18f334893c4280e69a3d99f0f0f8e07d197ca",
+    "model_metadata.json": "c702973acd92fea44891d473e3ffd42c917bfdd9919c2bbf1bfa65d28a0fb620",
+    "metrics.json": "00d9b437cf79ba3a70845fec7a5a7748773d069078e2dea4dee549054ad319d1",
+    "segments.csv": "342f2d7da11822fb3225da9bfe4dca2658da09579b6fbfae6e104489457d0a7d",
+    "save_now_list.csv": "d9f670cb0751741955e0879871e17135bf60f5b52316851881bea0d9d78fe14b",
+    "figures/roc_curves.png": "04abe3fa9ecd09772f19f5ab3863403c5f533ecf7e5fb30cefc68028b12ef207",
+    "figures/capacity_curve.png": "d0d8a0c117819b7973a368bd07b3575b7944a0666d6257b2e6542c8c5fe7a37b",
+    "figures/roi_scenarios.png": "8f9590fc886450461b68ef04240accba1ce61b3df4cda5fead9864362208a6ae",
+    "figures/shap_beeswarm.png": "366594bc95cfe6da7a25bbbc576f85cf7a0402718c6f73708396e4b82f11b601",
+    "figures/shap_summary_bar.png": "e70b73f8c6cbc12066f81fc427eb788579722455e208f97ec032c0a2645fd573",
+    "figures/confusion_matrices.png": "4cc6dfb21c12393b615c8eedbfe5c2c71c4134ee4e6628b1cae9af524893c8f6",
+    "figures/calibration_curves.png": "7c19c2b581d8f864f242cd3aef14cbce176f9b8f1775686b13553eb004fae6a9",
+    "figures/pr_curves.png": "f2d3ea3036baad6ccc609f1ca4c1f4c88d52b1f1dc24d1b1342efb999cac8fb8",
+    "figures/shap_local_low_risk.png": "512e6e50f031c4efd60bc98305ecaaecaec7c9424fef2b16d64a369c609a5da6",
+    "figures/shap_local_medium_risk.png": "29448ca7841b0baa874d09ee55e192b82f09489ae6a24c0a044ff9c663fa4f75",
+    "figures/shap_local_high_risk.png": "d0241e48fb9ed8c139f40379d184382f7fa7dfef2f4d54b4452a03e632aa711c"
+  }
+}

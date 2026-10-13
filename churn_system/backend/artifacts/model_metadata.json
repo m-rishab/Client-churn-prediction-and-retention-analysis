@@ -1,0 +1,275 @@
+{
+  "model_name": "XGBoost",
+  "selection_metric": "validation ROC-AUC",
+  "selection_scores": {
+    "Logistic Regression": 0.8842,
+    "Random Forest": 0.8841,
+    "XGBoost": 0.888,
+    "Logistic Regression + SMOTE": 0.8845
+  },
+  "best_params": {
+    "model__colsample_bytree": 0.7467983561008608,
+    "model__learning_rate": 0.031616722433639895,
+    "model__max_depth": 3,
+    "model__min_child_weight": 5,
+    "model__n_estimators": 250,
+    "model__subsample": 0.71692347370813
+  },
+  "features": [
+    "Client_Tenure_Months",
+    "Service_Type",
+    "Support_Access",
+    "Engagement_Type",
+    "Monthly_Client_Value",
+    "Cumulative_Client_Value",
+    "Content_Quality_Score",
+    "Content_Score_Trend_30D",
+    "Guideline_Compliance_Score",
+    "Compliance_Flags",
+    "Critical_Compliance_Issues",
+    "Engagement_Score",
+    "Monthly_Engagements",
+    "Client_Meetings",
+    "Report_Views",
+    "Response_Rate",
+    "Support_Tickets",
+    "Unresolved_Support_Tickets",
+    "Avg_Resolution_Time",
+    "Days_Since_Last_Engagement",
+    "Search_Visibility_Change",
+    "Traffic_Change"
+  ],
+  "threshold_f1_optimal": 0.6094,
+  "threshold_cost_optimal": 0.26,
+  "cost_model": {
+    "missed_churner_fn": 5,
+    "wasted_outreach_fp": 1
+  },
+  "train_date_utc": "2026-09-23T18:00:39Z",
+  "seed": 42,
+  "library_versions": {
+    "pandas": "3.0.4",
+    "numpy": "2.1.3",
+    "scikit-learn": "1.6.1",
+    "imbalanced-learn": "0.13.0",
+    "xgboost": "3.0.5",
+    "shap": "0.52.0",
+    "matplotlib": "3.11.0",
+    "seaborn": "0.13.2",
+    "joblib": "1.4.2"
+  },
+  "split_sizes": {
+    "train": 4929,
+    "validation": 1057,
+    "test": 1057
+  },
+  "feature_groups": {
+    "content_quality": [
+      "Content_Quality_Score",
+      "Content_Score_Trend_30D",
+      "Guideline_Compliance_Score",
+      "Search_Visibility_Change",
+      "Traffic_Change"
+    ],
+    "compliance": [
+      "Compliance_Flags",
+      "Critical_Compliance_Issues"
+    ],
+    "engagement": [
+      "Engagement_Score",
+      "Monthly_Engagements",
+      "Client_Meetings",
+      "Report_Views",
+      "Response_Rate",
+      "Days_Since_Last_Engagement"
+    ],
+    "support": [
+      "Support_Tickets",
+      "Unresolved_Support_Tickets",
+      "Avg_Resolution_Time"
+    ]
+  },
+  "variant": "group-noise-pruned",
+  "pruned_groups": [],
+  "surviving_groups": [
+    "content_quality",
+    "compliance",
+    "engagement",
+    "support"
+  ],
+  "pruned_features": [
+    "noise_control_1",
+    "noise_control_2"
+  ],
+  "prune_best_params": {
+    "max_depth": 2,
+    "min_child_weight": 10,
+    "reg_lambda": 10.0
+  },
+  "prune_early_stopping_best_iter": 408,
+  "feature_schema": {
+    "Client_Tenure_Months": {
+      "dtype": "numeric",
+      "observed_min": 0.0,
+      "observed_max": 72.0,
+      "missing_allowed": false
+    },
+    "Service_Type": {
+      "dtype": "categorical",
+      "allowed_categories": [
+        "DSL",
+        "Fiber optic",
+        "No"
+      ],
+      "missing_allowed": false
+    },
+    "Support_Access": {
+      "dtype": "categorical",
+      "allowed_categories": [
+        "No",
+        "No internet service",
+        "Yes"
+      ],
+      "missing_allowed": false
+    },
+    "Engagement_Type": {
+      "dtype": "categorical",
+      "allowed_categories": [
+        "Month-to-month",
+        "One year",
+        "Two year"
+      ],
+      "missing_allowed": false
+    },
+    "Monthly_Client_Value": {
+      "dtype": "numeric",
+      "observed_min": 18.4,
+      "observed_max": 118.75,
+      "missing_allowed": false
+    },
+    "Cumulative_Client_Value": {
+      "dtype": "numeric",
+      "observed_min": 0.0,
+      "observed_max": 8684.8,
+      "missing_allowed": false
+    },
+    "Content_Quality_Score": {
+      "dtype": "numeric",
+      "observed_min": 16.1,
+      "observed_max": 114.7,
+      "missing_allowed": true
+    },
+    "Content_Score_Trend_30D": {
+      "dtype": "numeric",
+      "observed_min": -25.9,
+      "observed_max": 28.5,
+      "missing_allowed": false
+    },
+    "Guideline_Compliance_Score": {
+      "dtype": "numeric",
+      "observed_min": 41.0,
+      "observed_max": 116.4,
+      "missing_allowed": false
+    },
+    "Compliance_Flags": {
+      "dtype": "numeric",
+      "observed_min": -4.6,
+      "observed_max": 8.1,
+      "missing_allowed": false
+    },
+    "Critical_Compliance_Issues": {
+      "dtype": "numeric",
+      "observed_min": -2.9,
+      "observed_max": 4.0,
+      "missing_allowed": false
+    },
+    "Engagement_Score": {
+      "dtype": "numeric",
+      "observed_min": 7.4,
+      "observed_max": 146.6,
+      "missing_allowed": false
+    },
+    "Monthly_Engagements": {
+      "dtype": "numeric",
+      "observed_min": -11.0,
+      "observed_max": 22.2,
+      "missing_allowed": false
+    },
+    "Client_Meetings": {
+      "dtype": "numeric",
+      "observed_min": -4.1,
+      "observed_max": 9.2,
+      "missing_allowed": false
+    },
+    "Report_Views": {
+      "dtype": "numeric",
+      "observed_min": -13.6,
+      "observed_max": 40.3,
+      "missing_allowed": false
+    },
+    "Response_Rate": {
+      "dtype": "numeric",
+      "observed_min": 7.4,
+      "observed_max": 130.2,
+      "missing_allowed": true
+    },
+    "Support_Tickets": {
+      "dtype": "numeric",
+      "observed_min": -6.0,
+      "observed_max": 21.0,
+      "missing_allowed": false
+    },
+    "Unresolved_Support_Tickets": {
+      "dtype": "numeric",
+      "observed_min": -3.7,
+      "observed_max": 7.2,
+      "missing_allowed": false
+    },
+    "Avg_Resolution_Time": {
+      "dtype": "numeric",
+      "observed_min": -15.9,
+      "observed_max": 197.9,
+      "missing_allowed": false
+    },
+    "Days_Since_Last_Engagement": {
+      "dtype": "numeric",
+      "observed_min": -51.0,
+      "observed_max": 102.2,
+      "missing_allowed": false
+    },
+    "Search_Visibility_Change": {
+      "dtype": "numeric",
+      "observed_min": -35.5,
+      "observed_max": 35.0,
+      "missing_allowed": false
+    },
+    "Traffic_Change": {
+      "dtype": "numeric",
+      "observed_min": -40.9,
+      "observed_max": 44.3,
+      "missing_allowed": false
+    }
+  },
+  "thresholds": {
+    "f1_optimal": 0.6094,
+    "cost_optimal": 0.26,
+    "cost_model": {
+      "missed_churner_fn": 5,
+      "wasted_outreach_fp": 1
+    },
+    "risk_band_rule": "High risk if churn_probability >= threshold_f1_optimal"
+  },
+  "business_rules": {
+    "monthly_client_value_median_train": 70.4,
+    "expected_remaining_months": "clip(72 - Client_Tenure_Months, 0, 24)",
+    "expected_value_remaining": "Monthly_Client_Value * expected_remaining_months",
+    "value_tier_rule": "High value if Monthly_Client_Value * expected_remaining_months >= monthly_client_value_median_train * 24",
+    "note": "The single-client API uses the training-set median of Monthly_Client_Value x 24 as its value reference; the batch segmentation in the notebook uses the roster median of expected_value_remaining.",
+    "segments": {
+      "High risk + High value": "Save now - senior advisor call + content strategy review within 7 days",
+      "High risk + Low value": "Automated nudge - email/portal tips + self-serve content check",
+      "Low risk + High value": "Nurture - quarterly business review + upsell content roadmap",
+      "Low risk + Low value": "Monitor - automated health score, standard support"
+    }
+  }
+}

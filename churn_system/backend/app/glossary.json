@@ -1,0 +1,527 @@
+{
+  "_note": "Single source of truth for every label, tooltip, segment, band and metric in the UI. Ranges come from models/model_metadata.json (observed_min/observed_max). Typical values are medians/modes of the saved practice dataset (quick_check_selection.json). Direction hints were verified empirically against the saved model (see quick_check_selection.json 'directions'); hints that contradicted the model were dropped (none needed dropping). Hints describe patterns in practice data, never causes.",
+  "fields": {
+    "Client_Tenure_Months": {
+      "label": "Months with us",
+      "definition": "How many months this client has worked with us.",
+      "example": 18,
+      "range": [
+        0,
+        72
+      ],
+      "typical": 29,
+      "input": "number",
+      "group": "account",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "telecom_base"
+    },
+    "Service_Type": {
+      "label": "Plan",
+      "definition": "Which plan the client is on.",
+      "example": "Fiber optic",
+      "range": [
+        "DSL",
+        "Fiber optic",
+        "No"
+      ],
+      "typical": "Fiber optic",
+      "input": "segmented",
+      "group": "account",
+      "direction_hint": "In this demo model, the Premium (Fiber) plan usually goes with HIGHER risk than Standard (DSL) or no plan.",
+      "options": [
+        {
+          "value": "DSL",
+          "label": "Standard (DSL)",
+          "definition": "The standard plan, delivered over phone lines.",
+          "example": "DSL"
+        },
+        {
+          "value": "Fiber optic",
+          "label": "Premium (Fiber)",
+          "definition": "The premium plan, delivered over fiber. Plan names come from the demo dataset.",
+          "example": "Fiber optic"
+        },
+        {
+          "value": "No",
+          "label": "No plan",
+          "definition": "The client has no plan with us.",
+          "example": "No"
+        }
+      ],
+      "data_origin": "telecom_base"
+    },
+    "Support_Access": {
+      "label": "Extra support",
+      "definition": "Whether the client has a dedicated help package.",
+      "example": "No",
+      "range": [
+        "No",
+        "No internet service",
+        "Yes"
+      ],
+      "typical": "No",
+      "input": "switch",
+      "group": "account",
+      "direction_hint": "In this demo model, clients without the extra support package usually show HIGHER risk.",
+      "options": [
+        {
+          "value": "Yes",
+          "label": "Yes",
+          "definition": "The client has the extra support package.",
+          "example": "Yes"
+        },
+        {
+          "value": "No",
+          "label": "No",
+          "definition": "The client does not have the extra support package.",
+          "example": "No"
+        },
+        {
+          "value": "No internet service",
+          "label": "Not on a plan",
+          "definition": "The client is not on a plan, so there is no support package. Real value used by the model: \"No internet service\".",
+          "example": "No internet service"
+        }
+      ],
+      "data_origin": "telecom_base"
+    },
+    "Engagement_Type": {
+      "label": "Contract length",
+      "definition": "How long their agreement runs. Longer contracts are usually harder to leave.",
+      "example": "Month-to-month",
+      "range": [
+        "Month-to-month",
+        "One year",
+        "Two year"
+      ],
+      "typical": "Month-to-month",
+      "input": "segmented",
+      "group": "account",
+      "direction_hint": "In this demo model, month-to-month contracts usually go with HIGHER risk than one- or two-year contracts.",
+      "options": [
+        {
+          "value": "Month-to-month",
+          "label": "Month to month",
+          "definition": "The agreement renews every month and can be ended any time.",
+          "example": "Month-to-month"
+        },
+        {
+          "value": "One year",
+          "label": "One year",
+          "definition": "The agreement runs for one year.",
+          "example": "One year"
+        },
+        {
+          "value": "Two year",
+          "label": "Two years",
+          "definition": "The agreement runs for two years. Real value used by the model: \"Two year\".",
+          "example": "Two year"
+        }
+      ],
+      "data_origin": "telecom_base"
+    },
+    "Monthly_Client_Value": {
+      "label": "Monthly payment",
+      "definition": "What the client pays us each month (demo money units).",
+      "example": 70,
+      "range": [
+        18.4,
+        118.75
+      ],
+      "typical": 70.3,
+      "input": "number",
+      "group": "account",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "telecom_base"
+    },
+    "Cumulative_Client_Value": {
+      "label": "Total paid so far",
+      "definition": "Everything the client has paid since joining.",
+      "example": 1500,
+      "range": [
+        0,
+        8684.8
+      ],
+      "typical": 1394.5,
+      "input": "number",
+      "group": "account",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "telecom_base"
+    },
+    "Content_Quality_Score": {
+      "label": "Content quality (0 to 100)",
+      "definition": "How good their website content is against Google's quality guidelines. Higher is better.",
+      "example": 75,
+      "range": [
+        16.1,
+        114.7
+      ],
+      "typical": 71.4,
+      "input": "score",
+      "group": "content_quality",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Content_Score_Trend_30D": {
+      "label": "Content score change, last 30 days",
+      "definition": "How much that score moved. A minus number means it dropped.",
+      "example": -4,
+      "range": [
+        -25.9,
+        28.5
+      ],
+      "typical": 1.1,
+      "input": "number",
+      "group": "content_quality",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Guideline_Compliance_Score": {
+      "label": "Guideline score (0 to 100)",
+      "definition": "How well the content follows Google's Search Quality Guidelines.",
+      "example": 85,
+      "range": [
+        41,
+        116.4
+      ],
+      "typical": 79.3,
+      "input": "score",
+      "group": "content_quality",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Compliance_Flags": {
+      "label": "Guideline warnings",
+      "definition": "How many times content was flagged for breaking a guideline.",
+      "example": 2,
+      "range": [
+        -4.6,
+        8.1
+      ],
+      "typical": 1.5,
+      "input": "number",
+      "group": "compliance",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Critical_Compliance_Issues": {
+      "label": "Serious guideline issues",
+      "definition": "Serious problems (the kind that can hurt Search visibility) still open.",
+      "example": 0,
+      "range": [
+        -2.9,
+        4
+      ],
+      "typical": 0.3,
+      "input": "number",
+      "group": "compliance",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Engagement_Score": {
+      "label": "Engagement (0 to 100)",
+      "definition": "One number for how active the client is with us: calls, replies, report views.",
+      "example": 72,
+      "range": [
+        7.4,
+        146.6
+      ],
+      "typical": 67.4,
+      "input": "score",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Monthly_Engagements": {
+      "label": "Contacts per month",
+      "definition": "How many times the client replied, joined a call or used the portal in a month.",
+      "example": 8,
+      "range": [
+        -11,
+        22.2
+      ],
+      "typical": 7.4,
+      "input": "number",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Client_Meetings": {
+      "label": "Meetings per month",
+      "definition": "Meetings we had with the client in a month.",
+      "example": 2,
+      "range": [
+        -4.1,
+        9.2
+      ],
+      "typical": 2.4,
+      "input": "number",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Report_Views": {
+      "label": "Reports opened",
+      "definition": "How many times they opened our reports recently.",
+      "example": 15,
+      "range": [
+        -13.6,
+        40.3
+      ],
+      "typical": 14,
+      "input": "number",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Response_Rate": {
+      "label": "Reply rate (%)",
+      "definition": "Of our messages, what percent the client answered.",
+      "example": 80,
+      "range": [
+        7.4,
+        130.2
+      ],
+      "typical": 72.5,
+      "input": "number",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Support_Tickets": {
+      "label": "Help requests",
+      "definition": "Help requests raised recently.",
+      "example": 3,
+      "range": [
+        -6,
+        21
+      ],
+      "typical": 2.7,
+      "input": "number",
+      "group": "support",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Unresolved_Support_Tickets": {
+      "label": "Open help requests",
+      "definition": "Requests not solved yet.",
+      "example": 1,
+      "range": [
+        -3.7,
+        7.2
+      ],
+      "typical": 0.9,
+      "input": "number",
+      "group": "support",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Avg_Resolution_Time": {
+      "label": "Hours to solve a request",
+      "definition": "Average hours we take to solve their requests.",
+      "example": 30,
+      "range": [
+        -15.9,
+        197.9
+      ],
+      "typical": 30.4,
+      "input": "number",
+      "group": "support",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Days_Since_Last_Engagement": {
+      "label": "Days since last contact",
+      "definition": "Days since they last replied, joined a call or opened a report.",
+      "example": 12,
+      "range": [
+        -51,
+        102.2
+      ],
+      "typical": 24.4,
+      "input": "number",
+      "group": "engagement",
+      "direction_hint": "In this demo model, higher values usually go with HIGHER risk.",
+      "data_origin": "simulated"
+    },
+    "Search_Visibility_Change": {
+      "label": "Google visibility change (%)",
+      "definition": "How much more or less their pages show in Google Search versus before. Minus means it dropped.",
+      "example": -5,
+      "range": [
+        -35.5,
+        35
+      ],
+      "typical": 0.8,
+      "input": "number",
+      "group": "content_quality",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    },
+    "Traffic_Change": {
+      "label": "Website visitors change (%)",
+      "definition": "How much visitors to their site went up or down versus before.",
+      "example": -8,
+      "range": [
+        -40.9,
+        44.3
+      ],
+      "typical": 1,
+      "input": "number",
+      "group": "content_quality",
+      "direction_hint": "In this demo model, higher values usually go with LOWER risk.",
+      "data_origin": "simulated"
+    }
+  },
+  "segments": {
+    "Save now": {
+      "api_values": [
+        "High risk + High value"
+      ],
+      "definition": "Likely to leave and important to us. Talk to them personally within 7 days.",
+      "example": "A client who pays a lot each month, replied to us weeks ago, and has open serious issues.",
+      "color_hint": "high"
+    },
+    "Automated nudge": {
+      "api_values": [
+        "High risk + Low value"
+      ],
+      "definition": "Likely to leave, smaller value. Send a helpful email or a short report walkthrough.",
+      "example": "A small account on a month-to-month plan that stopped opening reports.",
+      "color_hint": "high"
+    },
+    "Nurture": {
+      "api_values": [
+        "Low risk + High value"
+      ],
+      "definition": "Unlikely to leave and important to us. Stay in touch, review every quarter.",
+      "example": "A large account on a two-year contract with steady replies.",
+      "color_hint": "low"
+    },
+    "Monitor": {
+      "api_values": [
+        "Low risk + Low value"
+      ],
+      "definition": "Unlikely to leave, smaller value. No action now. Keep an eye on them.",
+      "example": "A small account on a one-year contract with regular activity.",
+      "color_hint": "low"
+    }
+  },
+  "risk_bands": {
+    "Low": {
+      "api_values": [
+        "Low risk"
+      ],
+      "score_range": [
+        0,
+        40
+      ],
+      "definition": "The client looks steady. Keep things running as usual.",
+      "example": "A score of 12 with regular replies and a long contract."
+    },
+    "Medium": {
+      "api_values": [
+        "Medium risk"
+      ],
+      "score_range": [
+        40,
+        60
+      ],
+      "definition": "Some signs to watch. Keep an eye on this client.",
+      "example": "A score of 52 after a quiet month."
+    },
+    "High": {
+      "api_values": [
+        "High risk"
+      ],
+      "score_range": [
+        60,
+        100
+      ],
+      "definition": "Clear warning signs. Act soon.",
+      "example": "A score of 84 with no contact for weeks."
+    }
+  },
+  "modes": {
+    "balanced": {
+      "label": "Balanced",
+      "definition": "Flags fewer clients, so fewer false alarms.",
+      "example": "Best when you have time to check each flagged client.",
+      "api_threshold": 0.6094
+    },
+    "catch_more": {
+      "label": "Catch more",
+      "definition": "Flags more clients, so you miss fewer leavers, but with more false alarms.",
+      "example": "Best when a missed leaver costs more than an extra phone call.",
+      "api_threshold": 0.26
+    }
+  },
+  "metrics": {
+    "accuracy": {
+      "label": "Accuracy",
+      "definition": "Of all clients, how often the tool called it right.",
+      "example": "0.85 means it was right for 85 out of 100 clients."
+    },
+    "precision": {
+      "label": "Precision",
+      "definition": "When it says a client will leave, how often it is right.",
+      "example": "0.68 means about 2 in 3 flagged clients really leave."
+    },
+    "recall": {
+      "label": "Recall",
+      "definition": "Of clients who really leave, how many it catches.",
+      "example": "0.80 means it catches 8 of every 10 leavers."
+    },
+    "f1": {
+      "label": "F1",
+      "definition": "One score that balances precision and recall.",
+      "example": "Closer to 1 is better; 0.5 is mediocre."
+    },
+    "roc_auc": {
+      "label": "ROC-AUC",
+      "definition": "How well it tells leaving clients from staying ones. 0.5 is a coin flip, 1 is perfect.",
+      "example": "0.91 means it ranks a random leaver above a random stayer 91% of the time."
+    }
+  },
+  "misc": {
+    "risk_score": {
+      "label": "Risk score",
+      "definition": "0 to 100. Higher means more likely to leave. A guide, not a promise.",
+      "example": "64 means the pattern looks like clients who left in the practice data.",
+      "direction_hint": "Because of how the model was trained, the score is not a true percent of clients who leave."
+    },
+    "expected_loss": {
+      "label": "Expected loss",
+      "definition": "Rough money we could lose = risk score x client value (demo units).",
+      "example": "Risk 50 on a client worth 1,000 gives about 500."
+    },
+    "top_reasons": {
+      "label": "Top reasons",
+      "definition": "The details that moved this client's score up or down the most.",
+      "example": "\"Days since last contact\" with an up arrow means the quiet stretch raised the score.",
+      "direction_hint": "This shows a pattern in practice data. It does not prove that changing something will keep the client."
+    },
+    "practice_data": {
+      "label": "Practice data",
+      "definition": "Made-up data, not real Highspring clients.",
+      "example": "The demo dataset stands in for real client records."
+    }
+  },
+  "ui": {
+    "segment": {
+      "label": "Segment",
+      "definition": "Which of four groups the client falls into, and the matching next step.",
+      "example": "Save now means: call this client within 7 days."
+    },
+    "level": {
+      "label": "Level",
+      "definition": "Low, Medium or High. A short label for the risk score.",
+      "example": "High means clear warning signs; act soon."
+    },
+    "confusion_matrix": {
+      "label": "Confusion matrix",
+      "definition": "A small table counting where the tool was right or wrong on the practice test set.",
+      "example": "\"Caught 225 leavers, missed 55, raised 106 false alarms, rightly cleared 671 stayers.\""
+    }
+  }
+}

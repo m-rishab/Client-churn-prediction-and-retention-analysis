@@ -1,0 +1,27 @@
+{
+  "note": "Fields a normal business user (account manager / client success) can realistically know for a client. All 22 model fields qualify: the glossary gives each a plain label, example and range. This list is the allowlist used by the quick-check selection.",
+  "knowable_fields": [
+    "Client_Tenure_Months",
+    "Service_Type",
+    "Support_Access",
+    "Engagement_Type",
+    "Monthly_Client_Value",
+    "Cumulative_Client_Value",
+    "Content_Quality_Score",
+    "Content_Score_Trend_30D",
+    "Guideline_Compliance_Score",
+    "Compliance_Flags",
+    "Critical_Compliance_Issues",
+    "Engagement_Score",
+    "Monthly_Engagements",
+    "Client_Meetings",
+    "Report_Views",
+    "Response_Rate",
+    "Support_Tickets",
+    "Unresolved_Support_Tickets",
+    "Avg_Resolution_Time",
+    "Days_Since_Last_Engagement",
+    "Search_Visibility_Change",
+    "Traffic_Change"
+  ]
+}

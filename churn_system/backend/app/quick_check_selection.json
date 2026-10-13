@@ -1,0 +1,462 @@
+{
+  "method": {
+    "importance": "sklearn permutation_importance (roc_auc, 5 repeats) on a fixed random sample of 1500 saved practice rows; the trained model was only loaded, never retrained",
+    "sample_auc_on_saved_rows": 0.9164,
+    "seed": 42,
+    "selection_rules": [
+      "top global importance first",
+      "at most 2 fields from the same feature group (model feature_groups; ungrouped account fields capped at 2 as their own group)",
+      "every field must be knowable by a normal account manager (knowable_fields.json)",
+      "coverage: >=1 account field, >=1 engagement field, >=1 content/guidelines field"
+    ]
+  },
+  "importance_ranking": [
+    {
+      "feature": "Service_Type",
+      "importance": 0.03122,
+      "std": 0.00413
+    },
+    {
+      "feature": "Client_Tenure_Months",
+      "importance": 0.0216,
+      "std": 0.00286
+    },
+    {
+      "feature": "Engagement_Type",
+      "importance": 0.01656,
+      "std": 0.00248
+    },
+    {
+      "feature": "Days_Since_Last_Engagement",
+      "importance": 0.01068,
+      "std": 0.00165
+    },
+    {
+      "feature": "Monthly_Client_Value",
+      "importance": 0.00837,
+      "std": 0.00147
+    },
+    {
+      "feature": "Critical_Compliance_Issues",
+      "importance": 0.00776,
+      "std": 0.00102
+    },
+    {
+      "feature": "Report_Views",
+      "importance": 0.00659,
+      "std": 0.00201
+    },
+    {
+      "feature": "Response_Rate",
+      "importance": 0.00657,
+      "std": 0.00108
+    },
+    {
+      "feature": "Content_Score_Trend_30D",
+      "importance": 0.0061,
+      "std": 0.00098
+    },
+    {
+      "feature": "Search_Visibility_Change",
+      "importance": 0.00557,
+      "std": 0.00079
+    },
+    {
+      "feature": "Engagement_Score",
+      "importance": 0.00525,
+      "std": 0.00054
+    },
+    {
+      "feature": "Avg_Resolution_Time",
+      "importance": 0.00438,
+      "std": 0.00067
+    },
+    {
+      "feature": "Compliance_Flags",
+      "importance": 0.00322,
+      "std": 0.00163
+    },
+    {
+      "feature": "Client_Meetings",
+      "importance": 0.00317,
+      "std": 0.00061
+    },
+    {
+      "feature": "Guideline_Compliance_Score",
+      "importance": 0.00269,
+      "std": 0.00074
+    },
+    {
+      "feature": "Cumulative_Client_Value",
+      "importance": 0.00232,
+      "std": 0.0005
+    },
+    {
+      "feature": "Monthly_Engagements",
+      "importance": 0.00197,
+      "std": 0.00144
+    },
+    {
+      "feature": "Unresolved_Support_Tickets",
+      "importance": 0.00173,
+      "std": 0.00057
+    },
+    {
+      "feature": "Content_Quality_Score",
+      "importance": 0.00149,
+      "std": 0.00077
+    },
+    {
+      "feature": "Support_Access",
+      "importance": 0.00116,
+      "std": 0.00039
+    },
+    {
+      "feature": "Support_Tickets",
+      "importance": 0.0011,
+      "std": 0.00026
+    },
+    {
+      "feature": "Traffic_Change",
+      "importance": 0.00103,
+      "std": 0.00046
+    }
+  ],
+  "quick_check_fields": [
+    "Service_Type",
+    "Client_Tenure_Months",
+    "Days_Since_Last_Engagement",
+    "Critical_Compliance_Issues",
+    "Report_Views",
+    "Content_Score_Trend_30D"
+  ],
+  "field_rationale": [
+    {
+      "field": "Service_Type",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "account",
+      "importance": 0.03122,
+      "rank_in_model": 1
+    },
+    {
+      "field": "Client_Tenure_Months",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "account",
+      "importance": 0.0216,
+      "rank_in_model": 2
+    },
+    {
+      "field": "Days_Since_Last_Engagement",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "engagement",
+      "importance": 0.01068,
+      "rank_in_model": 4
+    },
+    {
+      "field": "Critical_Compliance_Issues",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "compliance",
+      "importance": 0.00776,
+      "rank_in_model": 6
+    },
+    {
+      "field": "Report_Views",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "engagement",
+      "importance": 0.00659,
+      "rank_in_model": 7
+    },
+    {
+      "field": "Content_Score_Trend_30D",
+      "why": "among the model's most important fields (permutation importance)",
+      "group": "content_quality",
+      "importance": 0.0061,
+      "rank_in_model": 9
+    }
+  ],
+  "directions": {
+    "Client_Tenure_Months": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.401,
+      "proba_at_q3": 0.3264,
+      "proba_at_d10": 0.4387,
+      "proba_at_d90": 0.3084,
+      "quartile_delta": -0.0746,
+      "decile_delta": -0.1303,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Service_Type": {
+      "type": "categorical",
+      "proba_by_category": {
+        "DSL": 0.2921,
+        "Fiber optic": 0.5448,
+        "No": 0.1365
+      },
+      "spread": 0.4083,
+      "baseline": 0.3695
+    },
+    "Support_Access": {
+      "type": "categorical",
+      "proba_by_category": {
+        "No": 0.5436,
+        "No internet service": 0.1365,
+        "Yes": 0.2475
+      },
+      "spread": 0.4071,
+      "baseline": 0.3695
+    },
+    "Engagement_Type": {
+      "type": "categorical",
+      "proba_by_category": {
+        "Month-to-month": 0.568,
+        "One year": 0.1994,
+        "Two year": 0.0636
+      },
+      "spread": 0.5044,
+      "baseline": 0.3695
+    },
+    "Monthly_Client_Value": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3612,
+      "proba_at_q3": 0.3827,
+      "proba_at_d10": 0.3092,
+      "proba_at_d90": 0.4232,
+      "quartile_delta": 0.0216,
+      "decile_delta": 0.1141,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Cumulative_Client_Value": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.379,
+      "proba_at_q3": 0.354,
+      "proba_at_d10": 0.3891,
+      "proba_at_d90": 0.3523,
+      "quartile_delta": -0.025,
+      "decile_delta": -0.0368,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Content_Quality_Score": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3804,
+      "proba_at_q3": 0.3616,
+      "proba_at_d10": 0.3847,
+      "proba_at_d90": 0.3431,
+      "quartile_delta": -0.0188,
+      "decile_delta": -0.0416,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Content_Score_Trend_30D": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3965,
+      "proba_at_q3": 0.3422,
+      "proba_at_d10": 0.4087,
+      "proba_at_d90": 0.3506,
+      "quartile_delta": -0.0543,
+      "decile_delta": -0.0582,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Guideline_Compliance_Score": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.375,
+      "proba_at_q3": 0.3664,
+      "proba_at_d10": 0.3913,
+      "proba_at_d90": 0.3314,
+      "quartile_delta": -0.0087,
+      "decile_delta": -0.0599,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Compliance_Flags": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3425,
+      "proba_at_q3": 0.3865,
+      "proba_at_d10": 0.3419,
+      "proba_at_d90": 0.4164,
+      "quartile_delta": 0.044,
+      "decile_delta": 0.0746,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Critical_Compliance_Issues": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3561,
+      "proba_at_q3": 0.3825,
+      "proba_at_d10": 0.3218,
+      "proba_at_d90": 0.4162,
+      "quartile_delta": 0.0264,
+      "decile_delta": 0.0944,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Engagement_Score": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3918,
+      "proba_at_q3": 0.3287,
+      "proba_at_d10": 0.4129,
+      "proba_at_d90": 0.3174,
+      "quartile_delta": -0.0631,
+      "decile_delta": -0.0955,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Monthly_Engagements": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3816,
+      "proba_at_q3": 0.352,
+      "proba_at_d10": 0.3868,
+      "proba_at_d90": 0.335,
+      "quartile_delta": -0.0297,
+      "decile_delta": -0.0518,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Client_Meetings": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3783,
+      "proba_at_q3": 0.3552,
+      "proba_at_d10": 0.3919,
+      "proba_at_d90": 0.3445,
+      "quartile_delta": -0.0232,
+      "decile_delta": -0.0474,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Report_Views": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3939,
+      "proba_at_q3": 0.3369,
+      "proba_at_d10": 0.3975,
+      "proba_at_d90": 0.3106,
+      "quartile_delta": -0.057,
+      "decile_delta": -0.0869,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Response_Rate": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3835,
+      "proba_at_q3": 0.331,
+      "proba_at_d10": 0.4227,
+      "proba_at_d90": 0.331,
+      "quartile_delta": -0.0524,
+      "decile_delta": -0.0917,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Support_Tickets": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3516,
+      "proba_at_q3": 0.3864,
+      "proba_at_d10": 0.3616,
+      "proba_at_d90": 0.3763,
+      "quartile_delta": 0.0348,
+      "decile_delta": 0.0147,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Unresolved_Support_Tickets": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3584,
+      "proba_at_q3": 0.3817,
+      "proba_at_d10": 0.3502,
+      "proba_at_d90": 0.3858,
+      "quartile_delta": 0.0233,
+      "decile_delta": 0.0356,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Avg_Resolution_Time": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3483,
+      "proba_at_q3": 0.3851,
+      "proba_at_d10": 0.3279,
+      "proba_at_d90": 0.387,
+      "quartile_delta": 0.0368,
+      "decile_delta": 0.0591,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Days_Since_Last_Engagement": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3277,
+      "proba_at_q3": 0.4016,
+      "proba_at_d10": 0.3126,
+      "proba_at_d90": 0.4246,
+      "quartile_delta": 0.0739,
+      "decile_delta": 0.1119,
+      "direction": "HIGHER",
+      "verified": true
+    },
+    "Search_Visibility_Change": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.377,
+      "proba_at_q3": 0.3298,
+      "proba_at_d10": 0.4059,
+      "proba_at_d90": 0.3278,
+      "quartile_delta": -0.0472,
+      "decile_delta": -0.0781,
+      "direction": "LOWER",
+      "verified": true
+    },
+    "Traffic_Change": {
+      "type": "numeric",
+      "baseline": 0.3695,
+      "proba_at_q1": 0.3742,
+      "proba_at_q3": 0.3666,
+      "proba_at_d10": 0.3804,
+      "proba_at_d90": 0.357,
+      "quartile_delta": -0.0076,
+      "decile_delta": -0.0235,
+      "direction": "LOWER",
+      "verified": true
+    }
+  },
+  "typical_values": {
+    "Client_Tenure_Months": 29.0,
+    "Service_Type": "Fiber optic",
+    "Support_Access": "No",
+    "Engagement_Type": "Month-to-month",
+    "Monthly_Client_Value": 70.3,
+    "Cumulative_Client_Value": 1394.5,
+    "Content_Quality_Score": 71.4,
+    "Content_Score_Trend_30D": 1.1,
+    "Guideline_Compliance_Score": 79.3,
+    "Compliance_Flags": 1.5,
+    "Critical_Compliance_Issues": 0.3,
+    "Engagement_Score": 67.4,
+    "Monthly_Engagements": 7.4,
+    "Client_Meetings": 2.4,
+    "Report_Views": 14.0,
+    "Response_Rate": 72.5,
+    "Support_Tickets": 2.7,
+    "Unresolved_Support_Tickets": 0.9,
+    "Avg_Resolution_Time": 30.4,
+    "Days_Since_Last_Engagement": 24.4,
+    "Search_Visibility_Change": 0.8,
+    "Traffic_Change": 1.0
+  },
+  "data_source": "Data/processed/client_dataset_synthetic.csv (practice data)"
+}
